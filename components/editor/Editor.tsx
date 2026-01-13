@@ -1,25 +1,46 @@
-// components/editor/Editor.tsx
 "use client";
 
-import { ReactFlow, Background, Controls, MiniMap, type Node, type Edge, type NodeChange, type EdgeChange } from "@xyflow/react";
-
-import "@xyflow/react/dist/style.css";
+import {
+  ReactFlow,
+  ReactFlowProvider,
+  Background,
+  Controls,
+  MiniMap,
+  type Node,
+} from "@xyflow/react";
+import { useMemo } from "react";
+import { NodeComponents } from "@/app/(private)/workflows/nodes/config";
 
 interface EditorProps {
-  nodes: Node[];
-  edges?: Edge[];
-  onNodesChange?: (changes: NodeChange[]) => void;
-  onEdgesChange?: (changes: EdgeChange[]) => void;
+  nodes?: Node[];
 }
 
-export default function Editor({ nodes, edges, onNodesChange, onEdgesChange }: EditorProps) {
+export default function Editor({ nodes }: EditorProps) {
+  const defaultNodes: Node[] = useMemo(
+    () => [
+      {
+        id: "initial",
+        type: "INITIAL",
+        position: { x: 100, y: 100 },
+        data: {},
+      },
+    ],
+    []
+  );
+
   return (
-    <div className="w-full h-full">
-      <ReactFlow nodes={nodes} edges={edges} onNodesChange={onNodesChange} onEdgesChange={onEdgesChange} fitView>
-        <Background />
-        <Controls />
-        <MiniMap />
-      </ReactFlow>
-    </div>
+    <ReactFlowProvider>
+      <div className="w-full h-full">
+        <ReactFlow
+          nodes={nodes ?? defaultNodes}
+          nodeTypes={NodeComponents}
+          fitView
+        >
+          <Background />
+          <Controls />
+          <MiniMap />
+        </ReactFlow>
+      </div>
+    </ReactFlowProvider>
   );
 }

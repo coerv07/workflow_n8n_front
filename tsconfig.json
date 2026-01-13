@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-, "api/workflows"  ],
+, "app/api/workflows"  ],
   "exclude": ["node_modules"]
 }

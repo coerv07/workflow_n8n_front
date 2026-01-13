@@ -17,6 +17,7 @@ export function useNodesByWorkflow(workflowId: string) {
       // mapeia apenas os campos que o React Flow precisa
       return nodes.map((n: Node) => ({
         id: n.id,
+        type: n.type,
         position: n.position,
         data: { label: (n.data.label as string) ?? n.name },
       }));

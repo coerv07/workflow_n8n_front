@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { CreateWorkflows } from "@/api/workflows/hooks/create.hook";
-import { FindAllWorkflows } from "@/api/workflows/hooks/findAll.hooks";
+import { CreateWorkflows } from "@/app/api/workflows/hooks/create.hook";
+import { FindAllWorkflows } from "@/app/api/workflows/hooks/findAll.hooks";
 import { Button } from "@/components/ui/button";
 import { ItemList } from "./components/pagination";
 
